@@ -8,10 +8,11 @@ namespace ProductManager
 {
     class Customer
     {
+        public int Id { get; set; }
         public string firstname { get; set; }
         public string lastname { get; set; }
 
-        public string streetAddress { get; set; }
+        public string street { get; set; }
 
         public string zip { get; set; }
 
@@ -25,7 +26,7 @@ namespace ProductManager
         public string Address {
             get
             {
-                return this.streetAddress + " " + this.zip + " " + this.state
+                return this.street + " " + this.zip + " " + this.state
                     + " " + this.country;
             }    
         }
@@ -36,7 +37,7 @@ namespace ProductManager
         {
             this.firstname = firstname;
             this.lastname = lastname;
-            this.streetAddress = street;
+            this.street = street;
             this.zip = zip;
             this.state = state;
             this.country = country;

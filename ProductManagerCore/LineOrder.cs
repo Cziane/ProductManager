@@ -8,15 +8,14 @@ namespace ProductManager
 {
     class LineOrder
     {
-        public Product content { get; }
-        public uint  quantity { get; set; }
+        public Product content { get; set; }
+        public int  quantity { get; set; }
 
-        public string ID { get; }
+        public string ID { get; set; }
 
-        public LineOrder(Product content, uint quantity)
+        public LineOrder(string ID, int quantity)
         {
-            this.ID = Guid.NewGuid().ToString();
-            this.content = content;
+            this.ID = ID;
             this.quantity = quantity;
         }
 

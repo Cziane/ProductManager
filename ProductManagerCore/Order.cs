@@ -1,14 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace ProductManager
 {
+    [Table(name: "OrderList")]
     class Order
     {
-        public string ID { get; }
+        [Column(name:"ID")]
+        public string ID { get; set; }
         public Customer customer { get; set; }
 
         private Dictionary<string, LineOrder> _lineOrders;
@@ -18,9 +21,8 @@ namespace ProductManager
         public List<LineOrder> LineOrders { get => this._lineOrders.Values.ToList(); }
 
 
-        public Order(Customer customer)
+        public Order()
         {
-            this.customer = customer;
             this._lineOrders = new Dictionary<string, LineOrder>();
             this._priceRule = new PriceRule(0);
         }
@@ -32,9 +34,10 @@ namespace ProductManager
             this._priceRule = pr;
         }
 
-        public void addLineOrder(Product p, uint quantity)
+        public void addLineOrder(Product p, int quantity)
         {
-            LineOrder line = new LineOrder(p, quantity);
+            LineOrder line = new LineOrder("test", quantity);
+            line.content = p;
             this._lineOrders.Add(line.ID, line);
         }
 
