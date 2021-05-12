@@ -1,22 +1,31 @@
-﻿using System;
+﻿using ProductManager.Model.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ProductManager
+namespace ProductManager.Model
 {
     class LineOrder
     {
         public Product content { get; set; }
         public int  quantity { get; set; }
 
-        public string ID { get; set; }
+        public int? ID { get; set; }
 
-        public LineOrder(string ID, int quantity)
+        public LineOrder(Product p, int quantity)
         {
-            this.ID = ID;
+            this.content = p;
             this.quantity = quantity;
+        }
+
+        public LineOrder(ELineOrder eline)
+        {
+            this.ID = eline.ID;
+            this.quantity = eline.Quantity;
+            //this.content = eline.Content;
+
         }
 
         public double CalculatePrice()

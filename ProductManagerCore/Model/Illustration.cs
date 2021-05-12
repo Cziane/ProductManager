@@ -4,11 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Drawing;
+using ProductManager.Model.Entities;
 
-namespace ProductManager
+namespace ProductManager.Model
 {
     class Illustration
     {
+        public int? Id {get;set;}
         public string path { get; set; }
 
         public string title { get; set; }
@@ -19,10 +21,15 @@ namespace ProductManager
             this.title = title;
         }
 
-        public Illustration(string path)
+
+
+        public Illustration(EIllustration eIllu)
         {
-            this.path = path;
+            this.Id = eIllu.ID;
+            this.title = eIllu.title;
+            this.path = eIllu.path;
         }
+
 
         public dynamic GetContent()
         {

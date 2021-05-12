@@ -1,4 +1,6 @@
 ﻿using System;
+using ProductManager.Model;
+using ProductManager.Model.Entities;
 
 namespace ProductManager
 {

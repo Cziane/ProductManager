@@ -1,15 +1,16 @@
-﻿using System;
+﻿using ProductManager.Model.Entities;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ProductManager
+namespace ProductManager.Model
 {
     class Product
     {
-        public int Id { get; set; }
+        public int? Id { get; set; }
         public string title { get; set; }
 
         public string description { get; set; }
@@ -32,14 +33,23 @@ namespace ProductManager
             }
         }
 
-        private ArrayList _illustrations;
+        private List<Illustration> _illustrations;
 
         public Product(string title, string description, double price)
         {
             this.title = title;
             this.description = description;
             this.Price = price;
-            this._illustrations = new ArrayList();
+            this._illustrations = new List<Illustration>();
+        }
+
+        public Product(EProduct eprod)
+        {
+            this.Id = eprod.ID;
+            this.title = eprod.Title;
+            this.description = eprod.Description;
+            this.Price = eprod.Price;
+            //this._illustrations = ;
         }
 
         public Illustration GetIllustration(int index)

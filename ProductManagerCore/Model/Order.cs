@@ -1,20 +1,19 @@
-﻿using System;
+﻿using ProductManager.Model.Entities;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ProductManager
+namespace ProductManager.Model
 {
-    [Table(name: "OrderList")]
     class Order
     {
-        [Column(name:"ID")]
-        public string ID { get; set; }
+        public int? ID { get; set; }
         public Customer customer { get; set; }
 
-        private Dictionary<string, LineOrder> _lineOrders;
+        private Dictionary<int, LineOrder> _lineOrders;
 
         private IPriceRule _priceRule;
 
@@ -23,22 +22,28 @@ namespace ProductManager
 
         public Order()
         {
-            this._lineOrders = new Dictionary<string, LineOrder>();
+            this._lineOrders = new Dictionary<int, LineOrder>();
             this._priceRule = new PriceRule(0);
         }
 
         public Order(Customer customer, IPriceRule pr)
         {
             this.customer = customer;
-            this._lineOrders = new Dictionary<string, LineOrder>();
+            this._lineOrders = new Dictionary<int, LineOrder>();
             this._priceRule = pr;
+        }
+
+        public Order(EOrder order)
+        {
+            this.ID = order.ID;
+            
         }
 
         public void addLineOrder(Product p, int quantity)
         {
-            LineOrder line = new LineOrder("test", quantity);
+          /*  LineOrder line = new LineOrder("test", quantity);
             line.content = p;
-            this._lineOrders.Add(line.ID, line);
+            this._lineOrders.Add(line.ID, line);*/
         }
 
         public double getTotal()
