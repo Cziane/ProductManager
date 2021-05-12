@@ -74,5 +74,6 @@ namespace ProductManager.Model
             content += "Total price : " + this._priceRule.CalculateTotalPrice(this);
             return content;
         }
+
     }
 }
