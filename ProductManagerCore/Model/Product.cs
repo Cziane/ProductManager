@@ -35,6 +35,8 @@ namespace ProductManager.Model
 
         private List<Illustration> _illustrations;
 
+        public List<Illustration> Illustrations { get => this._illustrations; }
+
         public Product(string title, string description, double price)
         {
             this.title = title;
@@ -49,12 +51,16 @@ namespace ProductManager.Model
             this.title = eprod.Title;
             this.description = eprod.Description;
             this.Price = eprod.Price;
-            //this._illustrations = ;
+            this._illustrations = new List<Illustration>();
+            foreach(EIllustration i in eprod.Illustrations)
+            {
+                this._illustrations.Add(new Illustration(i));
+            }
         }
 
         public Illustration GetIllustration(int index)
         {
-            return (_illustrations[index] as Illustration);
+            return _illustrations[index];
         }
 
         public void AddIllustration(Illustration illu)
@@ -62,15 +68,6 @@ namespace ProductManager.Model
             this._illustrations.Add(illu);
         }
 
-        public List<Illustration> GetIllustrations()
-        {
-            LinkedList<Illustration> myList = new LinkedList<Illustration>();
-            foreach(Illustration i in this._illustrations)
-            {
-                myList.AddLast(i);
-            }
-            return myList.ToList();
-        }
 
         public override string ToString()
         {

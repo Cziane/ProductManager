@@ -1,4 +1,5 @@
 ﻿using ProductManager.Model.Entities;
+using ProductManagerCore.Model.Factory;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -23,7 +24,7 @@ namespace ProductManager.Model
         public Order()
         {
             this._lineOrders = new Dictionary<int, LineOrder>();
-            this._priceRule = new PriceRule(0);
+            this._priceRule = PriceRuleFactory.Instance.getPriceRule(0);
         }
 
         public Order(Customer customer, IPriceRule pr)
@@ -36,6 +37,14 @@ namespace ProductManager.Model
         public Order(EOrder order)
         {
             this.ID = order.ID;
+            this.customer = new Customer(order.Owner);
+            this._lineOrders = new Dictionary<int, LineOrder>();
+            this._priceRule = PriceRuleFactory.Instance.getPriceRule(order.PriceRuler);
+            foreach(ELineOrder eline in order.Lines)
+            {
+                this._lineOrders.Add(eline.ID, new LineOrder(eline));
+            }
+
             
         }
 

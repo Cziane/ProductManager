@@ -21,7 +21,39 @@ namespace ProductManager.Model.Entities
 
     }
 
-    class ECustomer
+   abstract class Entity
+    {
+        public void Save()
+        {
+            using (var db = new ShopContext())
+            {
+                if (this.isExist())
+                {
+                    db.Update(this);
+                }
+                else
+                {
+                    db.Add(this);
+                }
+                db.SaveChanges();
+
+            }
+        }
+
+        public void Remove()
+        {
+            using (var db = new ShopContext())
+            {
+                db.Remove(this);
+                db.SaveChanges();
+
+            }
+        }
+
+        protected abstract bool isExist();
+    }
+
+    class ECustomer : Entity
     {
         public int ID { get; set; }
         public string firstname { get; set; }
@@ -36,16 +68,25 @@ namespace ProductManager.Model.Entities
 
         public string country { get; set; }
 
+        protected override bool isExist()
+        {
+            throw new NotImplementedException();
+        }
     }
 
-    class EIllustration
+    class EIllustration : Entity
     {
         public int ID { get; set; }
         public string title { get; set; }
         public string path { get; set; }
+
+        protected override bool isExist()
+        {
+            throw new NotImplementedException();
+        }
     }
 
-    class EProduct
+    class EProduct : Entity
     {
         public int ID { get; set; }
         public string Title { get; set; }
@@ -55,18 +96,27 @@ namespace ProductManager.Model.Entities
         public double Price { get; set; }
 
         public ICollection<EIllustration>? Illustrations { get; set; }
+
+        protected override bool isExist()
+        {
+            throw new NotImplementedException();
+        }
     }
 
-    class ELineOrder
+    class ELineOrder : Entity
     {
         public int ID { get; set; }
         public EProduct Content { get; set; }
 
         public int Quantity { get; set; }
 
+        protected override bool isExist()
+        {
+            throw new NotImplementedException();
+        }
     }
 
-    class EOrder
+    class EOrder : Entity
     {
         public int ID { get; set; }
         public int PriceRuler { get; set; }
@@ -74,6 +124,11 @@ namespace ProductManager.Model.Entities
         public ECustomer Owner { get; set; }
 
         public ICollection<ELineOrder>? Lines { get; set; }
+
+        protected override bool isExist()
+        {
+            throw new NotImplementedException();
+        }
     }
 
 }

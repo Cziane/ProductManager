@@ -24,7 +24,7 @@ namespace ProductManager.Model
         {
             this.ID = eline.ID;
             this.quantity = eline.Quantity;
-            //this.content = eline.Content;
+            this.content = new Product(eline.Content);
 
         }
 
