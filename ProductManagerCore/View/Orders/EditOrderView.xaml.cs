@@ -22,5 +22,38 @@ namespace ProductManagerCore.View.Orders
         {
             InitializeComponent();
         }
+
+        private void AttachCustomerBtnToOrder(object sender, RoutedEventArgs e)
+        {
+            //Controller
+        }
+
+        private void AddOrderLineToOrder(object sender, RoutedEventArgs e)
+        {
+            //Do in controller before
+        }
+
+        private void RemoveLineOrderBtnClick(object sender, RoutedEventArgs e)
+        {
+            if (!(this.OrderLines.SelectedItem is null))
+            {
+                //Do with controller
+                this.OrderLines.Items.Remove(this.OrderLines.SelectedItem);
+            }
+        }
+
+        private void SaveBtnClick(object sender, RoutedEventArgs e)
+        {
+            NavigationController.Instance.navigateTo("Orders.view");
+        }
+
+        private void CancelBtnClick(object sender, RoutedEventArgs e)
+        {
+            this.QuantityInput.Clear();
+            this.VatContent.Text = "";
+            this.subtotalContent.Text = "";
+            this.totalContent.Text = "";
+            NavigationController.Instance.navigateTo("Orders.view");
+        }
     }
 }

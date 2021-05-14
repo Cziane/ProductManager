@@ -18,6 +18,7 @@ namespace ProductManager.Model
 
         private IPriceRule _priceRule;
 
+
         public List<LineOrder> LineOrders { get => this._lineOrders.Values.ToList(); }
 
 
@@ -58,6 +59,16 @@ namespace ProductManager.Model
         public double getTotal()
         {
             return this._priceRule.CalculateTotalPrice(this);
+        }
+
+        public double subTotal()
+        {
+            return this._priceRule.CalculateTotalPriceWithoutVAT(this);
+        }
+
+        public double getVat()
+        {
+            return this._priceRule.CalculateVAT(this);
         }
 
 

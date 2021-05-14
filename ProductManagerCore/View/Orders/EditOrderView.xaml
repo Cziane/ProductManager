@@ -5,10 +5,53 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:ProductManagerCore.View.Orders"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="600" d:DesignWidth="800"
       Title="EditOrderView">
 
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Column="0" Grid.Row="0">
+            <Label> Customers </Label>
+            <ListView x:Name="CustomersList"></ListView>
+            <Button x:Name="AttachCustomerBtn" Click="AttachCustomerBtnToOrder">Attach to Order</Button>
+        </StackPanel>
+        <StackPanel Grid.Column="0" Grid.Row="1">
+            <Label>Products</Label>
+            <ListView x:Name="ProductList"></ListView>
+            <StackPanel Orientation="Horizontal">
+                <Label>Quanity</Label>
+                <TextBox x:Name="QuantityInput" MinWidth="50"></TextBox>
+            </StackPanel>
+            <Button x:Name="AddOrderLine" Click="AddOrderLineToOrder" Margin="0,5">Add to Order</Button>
+        </StackPanel>
+        <StackPanel Grid.Column="1" Grid.Row="0">
+            <Label>Order Line</Label>
+            <ListView x:Name="OrderLines"></ListView>
+            <Button x:Name="RemoveLineOrderBtn" Click="RemoveLineOrderBtnClick" Margin="0,5">Remove</Button>
+            <StackPanel Orientation="Horizontal">
+                <Label>SubTotal :</Label>
+                <TextBlock x:Name="subtotalContent"></TextBlock>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label>VAT:</Label>
+                <TextBlock x:Name="VatContent"></TextBlock>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label>Total:</Label>
+                <TextBlock x:Name="totalContent"></TextBlock>
+            </StackPanel>
+        </StackPanel>
+        <StackPanel Grid.Column="1" Grid.Row="1">
+            <Button x:Name="SaveBtn" Click="SaveBtnClick" Margin="0,5">Save</Button>
+            <Button x:Name="CancelBtn" Click="CancelBtnClick" Margin="0,5">Cancel</Button>
+        </StackPanel>
     </Grid>
 </Page>
