@@ -40,7 +40,8 @@ namespace ProductManagerCore.View.Products
             string description = this.DescriptionInput.Text;
             double price = double.Parse(this.priceInput.Text);
 
-            //Call the controlle to call the model
+            //Call the controller to call the model
+            //ProductController.Instance.AddProduct(title, description, price);
             NavigationController.Instance.navigateTo("Products.view");
         }
     }
