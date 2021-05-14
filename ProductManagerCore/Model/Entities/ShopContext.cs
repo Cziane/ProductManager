@@ -70,7 +70,18 @@ namespace ProductManager.Model.Entities
 
         protected override bool isExist()
         {
-            throw new NotImplementedException();
+          using ( var db = new ShopContext())
+            {
+               var customers =  db.Customers.OrderBy(c => c.ID);
+                foreach(dynamic c in customers)
+                {
+                    if(c.ID == this.ID)
+                    {
+                        return true;
+                    }
+                }
+            }
+            return false;
         }
     }
 
@@ -82,7 +93,7 @@ namespace ProductManager.Model.Entities
 
         protected override bool isExist()
         {
-            throw new NotImplementedException();
+            return false;
         }
     }
 
@@ -99,7 +110,18 @@ namespace ProductManager.Model.Entities
 
         protected override bool isExist()
         {
-            throw new NotImplementedException();
+            using (var db = new ShopContext())
+            {
+                var products = db.Products.OrderBy(c => c.ID);
+                foreach (dynamic c in products)
+                {
+                    if (c.ID == this.ID)
+                    {
+                        return true;
+                    }
+                }
+            }
+            return false;
         }
     }
 
@@ -112,7 +134,18 @@ namespace ProductManager.Model.Entities
 
         protected override bool isExist()
         {
-            throw new NotImplementedException();
+            using (var db = new ShopContext())
+            {
+                var lines = db.LineOrders.OrderBy(c => c.ID);
+                foreach (dynamic c in lines)
+                {
+                    if (c.ID == this.ID)
+                    {
+                        return true;
+                    }
+                }
+            }
+            return false;
         }
     }
 
@@ -127,7 +160,18 @@ namespace ProductManager.Model.Entities
 
         protected override bool isExist()
         {
-            throw new NotImplementedException();
+            using (var db = new ShopContext())
+            {
+                var orders = db.Orders.OrderBy(c => c.ID);
+                foreach (dynamic c in orders)
+                {
+                    if (c.ID == this.ID)
+                    {
+                        return true;
+                    }
+                }
+            }
+            return false;
         }
     }
 
