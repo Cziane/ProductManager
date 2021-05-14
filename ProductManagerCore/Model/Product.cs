@@ -71,8 +71,7 @@ namespace ProductManager.Model
 
         public override string ToString()
         {
-            return this.title + "\n" + "Description : " + this.description + "\n"
-                + "Price : " + this.Price + "€";
+            return this.title + " :" + this.Price + "€"; 
         }
     }
 }
